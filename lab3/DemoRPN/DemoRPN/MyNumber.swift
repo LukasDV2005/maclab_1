@@ -11,27 +11,71 @@ import Foundation
     var stack = [Double]()
     var number = ""
     
+    var fullText: String = ""
+    
     func increment(input: Int) {
+        fullText.removeFirst(number.count)
         number += "\(input)"
+        fullText = number + fullText
     }
     func clear() {
         number = ""
     }
     func plus() {
-        let n1 : Double = stack.popLast()!
-        let n2 : Double = stack.popLast()!
-        
-        stack.append(n2 + n1)
+        if (stack.count < 2) {
+            fullText = "\nnot enough operands\n" + fullText
+        } else {
+            let n1 : Double = stack.popLast()!
+            let n2 : Double = stack.popLast()!
+            let oldFullText = fullText
+            fullText = "\n\(n2+n1)\n+"
+            fullText += "\(oldFullText)"
+            stack.append(n2 + n1)
+        }
     }
     func minus() {
-        let n1 : Double =  stack.popLast()!
-        let n2 : Double =  stack.popLast()!
-        
-        stack.append(n2 - n1)
+        if (stack.count < 2) {
+            fullText = "\nnot enough operands\n" + fullText
+        } else {
+            let n1 : Double =  stack.popLast()!
+            let n2 : Double =  stack.popLast()!
+            let oldFullText = fullText
+            fullText = "\n\(n2-n1)\n-"
+            fullText += "\(oldFullText)"
+            stack.append(n2 - n1)
+        }
+    }
+    func multiply() {
+        if (stack.count < 2) {
+            fullText = "\nnot enough operands\n" + fullText
+        } else {
+            let n1 : Double = stack.popLast()!
+            let n2 : Double = stack.popLast()!
+            let oldFullText = fullText
+            fullText = "\n\(n2*n1)\nx"
+            fullText += "\(oldFullText)"
+            stack.append(n2 * n1)
+        }
+    }
+    func divide() {
+        if (stack.count < 2) {
+            fullText = "\nnot enough operands\n" + fullText
+        } else {
+            let n1 : Double = stack.popLast()!
+            let n2 : Double = stack.popLast()!
+            let oldFullText = fullText
+            fullText = "\n\(n2/n1)\n/"
+            fullText += "\(oldFullText)"
+            stack.append(n2 / n1)
+        }
     }
     func enter() {
+        fullText = "\n\(fullText)"
         let saved = Double(number)
         stack.append(saved!)
         number = ""
+    }
+    func showStack() {
+        fullText = "\n\(stack)" + fullText
     }
 }
