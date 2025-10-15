@@ -72,8 +72,12 @@ import Foundation
     func enter() {
         fullText = "\n\(fullText)"
         let saved = Double(number)
-        stack.append(saved!)
-        number = ""
+        if (saved == nil) {
+            fullText = "\nnot a number" + fullText
+        } else {
+            stack.append(saved!)
+            number = ""
+        }
     }
     func showStack() {
         fullText = "\n\(stack)" + fullText
