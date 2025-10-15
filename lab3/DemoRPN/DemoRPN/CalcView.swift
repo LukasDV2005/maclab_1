@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CalcView: View {
-    
     @State var number = MyNumber()
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,9 +16,8 @@ struct CalcView: View {
                 Grid {
                     GridRow {
                         ForEach(7..<10) { number2 in
-                            Button("\(number2)") {
-                                number.increment(input: number2)
-                            }
+                            CustomButton( name: "\(number2)", function: { number.increment(input: number2)
+                            })
                         }
                         Button("/") {
                             number.divide()
@@ -27,9 +25,8 @@ struct CalcView: View {
                     }
                     GridRow {
                         ForEach(4..<7) { number2 in
-                            Button("\(number2)") {
-                                number.increment(input: number2)
-                            }
+                            CustomButton( name: "\(number2)", function: { number.increment(input: number2)
+                            })
                         }
                         Button("X") {
                             number.multiply()
@@ -37,18 +34,16 @@ struct CalcView: View {
                     }
                     GridRow {
                         ForEach(1..<4) { number2 in
-                            Button("\(number2)") {
-                                number.increment(input: number2)
-                            }
+                            CustomButton( name: "\(number2)", function: { number.increment(input: number2)
+                            })
                         }
                         Button("-") {
                             number.minus()
                         }
                     }
                     GridRow {
-                        Button("0") {
-                            number.increment(input: 0)
-                        }
+                        CustomButton( name: "0", function: { number.increment(input: 0)
+                        })
                         Text(" ")
                         Text(" ")
                         Button("+") {
