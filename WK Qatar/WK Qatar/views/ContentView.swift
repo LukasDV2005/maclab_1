@@ -1,5 +1,5 @@
 //
-//  NavigationSplitView.swift
+//  ContentView.swift
 //  WK Qatar
 //
 //  Created by Lukas Devos on 15/10/2025.
@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-struct NavigationSplitView: View {
+struct ContentView: View {
     var body: some View {
-        
+        WelcomeView()
     }
-}
-
-#Preview {
-    NavigationSplitView()
 }
