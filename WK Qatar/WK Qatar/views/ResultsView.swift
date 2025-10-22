@@ -11,7 +11,9 @@ struct ResultsView: View {
     @State var selectedLocation: String?
     var body: some View {
         NavigationSplitView {
-            ListStadionView(selectedLocation: $selectedLocation)
+            ListStadionView(selectedLocation: selectedLocation)
+        } content: {
+            ScoreListView()
         } detail: {
             
         }

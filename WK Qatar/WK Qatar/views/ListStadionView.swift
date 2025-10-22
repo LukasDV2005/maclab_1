@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ListStadionView: View {
-    @Environment var wkresults: WKResultsDataStore
-    @Binding var selectedLocation: String?
+    @Environment(WKResultsDataStore.self) private var wkResultsDataStore
+    @State var selectedLocation: String?
     var body: some View {
-        List(wkresults.getAllTeams(),id: \.self, selection: $selectedLocation) { location in
-            Text(location)}
+        List(wkResultsDataStore.getAllLocations(), id: \.self, selection: $selectedLocation) {location in
+            Text(location)
+        }
     }
 }

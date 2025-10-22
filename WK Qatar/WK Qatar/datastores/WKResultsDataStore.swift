@@ -6,9 +6,13 @@
 //
 
 import Foundation
-@Observable
-class WKResultsDataStore {
+@Observable class WKResultsDataStore {
     var results: [WKResult] = []
+    
+    init() {
+        results = load("WKResultsQatar.json")
+    }
+    
     func getAllTeams() -> [String] {
         let filteredResults = results.filter { wkresult in
             wkresult.group != nil
