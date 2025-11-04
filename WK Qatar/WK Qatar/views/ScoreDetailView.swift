@@ -12,7 +12,7 @@ struct ScoreDetailView: View {
     @State var selectedTeam: String
     var body: some View {
         VStack {
-            Text(dataStore.getAllTeams().first!.matches.selectedTeam)
+            
         }
     }
 }

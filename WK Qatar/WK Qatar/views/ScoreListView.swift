@@ -12,7 +12,7 @@ struct ScoreListView: View {
     @State var selectedLocation : String?
     var body: some View {
         List(resultsDataStore.getAllResultsByLocation(), id: \.self, selection: $selectedLocation) { result in
-            NavigationLink(destination: ScoreDetailView(selectedTeam: result)) {
+            NavigationLink("\()" ,destination: ScoreDetailView(selectedTeam: result)) {
                 
             }
         }
