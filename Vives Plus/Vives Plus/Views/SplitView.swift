@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SplitView: View {
-    var selectedEvent: String
+    @State var selectedEvent : EventModel? = nil
     var body: some View {
-        VStack {
+        NavigationSplitView {
             LeftView(selectedEvent: selectedEvent)
+        } detail: {
+            RightView(selectedEvent: selectedEvent)
         }
     }
 }
