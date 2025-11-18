@@ -19,13 +19,17 @@ struct LeftView: View {
                 List(uurroosterDataStore.uurrooster, id: \.self, selection: $selectedEvent) { uurrooster in
                     HStack {
                         Text(uurrooster.startDateTime.description).bold()
-                        NavigationLink(uurrooster.title, destination: RightView(selectedEvent: selectedEvent))
+                        NavigationLink(uurrooster.title, destination: RightView(selectedEvent: selectedEvent, toolbar: false))
                     }
                 }
             }
         }.task {
             await uurroosterDataStore.loadData()
             loading = false
+        }.toolbar {
+            NavigationLink(destination: RightView(selectedEvent: nil as EventModel?, toolbar: true )) {
+                Image(systemName: "plus")
+            }
         }
     }
 }

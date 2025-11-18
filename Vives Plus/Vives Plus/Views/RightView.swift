@@ -8,24 +8,19 @@
 import SwiftUI
 
 struct RightView: View {
-    @Environment(UurroosterDataStore.self) var uurroosterDataStore
     var selectedEvent: EventModel?
+    var toolbar: Bool
     var body: some View {
-        if selectedEvent != nil {
-            HStack {
-                NavigationSplitView {
-                    Text("EDIT EVENT").position(x: 100, y: 100)
-                    Text(selectedEvent!.title)
-                } detail: {
-                    Text("Location?")
-                    TextEditor(text: .constant(""))
-                    Toggle("All day?", isOn: .constant(false))
-                    DatePicker("Start date & time?", selection: .constant(Date()))
-                    DatePicker("End date & time?", selection: .constant(Date()))
-                }
+        if toolbar {
+            if(selectedEvent == nil) {
+                AddEventView()
+            } else {
+                EditEventView(selectedEvent: selectedEvent!)
             }
-        } else {
+        } else if (selectedEvent == nil){
             Text("Selecteer event")
+        } else {
+            DetailView(selectedEvent: selectedEvent!)
         }
     }
 }
