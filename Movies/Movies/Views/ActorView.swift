@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct ActorView: View {
+    @State var selectedActor: Actor?
+    @State var selectedMovie: Movie?
+    @Environment(MovieDataStore.self) var dataStore
+    @Environment(PathStore.self) var pathStore
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("Actor: \(selectedActor!.firstName)" + " " + "\(selectedActor!.lastName)")
+            Text("birthday: " + "\(selectedActor!.birthday)")
+            Text("Movie(s)").bold()
+            List(dataStore.getMovies(actor:  selectedActor!), id: \.self) { movie in
+                NavigationLink(value: Route.movie(movie)) {
+                    VStack {
+                        Text("\(movie.title)")
+                    }
+                }
+            }
+        }
     }
 }
 

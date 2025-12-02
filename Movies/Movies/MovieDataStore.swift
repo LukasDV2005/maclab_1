@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 class MovieDataStore {
-    private var movies = Movies()
+    public var movies = Movies()
     
     init(){
         movies = load("movies.json")

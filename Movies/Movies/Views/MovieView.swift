@@ -14,11 +14,18 @@ struct MovieView: View {
     var body: some View {
         @Bindable var pathStore = pathStore
         VStack {
-            NavigationStack(path: $pathStore.path) {
-                VStack {
-                    
+            Text("\(selectedMovie!.title)").bold()
+            Text("\(selectedMovie!.description)")
+            VStack {
+                Text("Actors").bold()
+                List(selectedMovie!.actors, id: \.self) { actor in
+                    NavigationLink(value: Route.actor(actor)) {
+                        Text("\(actor.firstName)" + " " + "\(actor.lastName)")
+                    }
                 }
             }
+            Text("Director").bold()
+            
         }
         .padding()
     }

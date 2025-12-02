@@ -14,12 +14,28 @@ struct ContentView: View {
     var body: some View {
         @Bindable var pathStore = pathStore
         VStack {
-            List(dataStore.movies.movies, id: \.self) { movie in
-                NavigationLink(destination: MovieView(movie: movie)) {
-                    Text(movie.title)
+            NavigationStack(path: $pathStore.path){
+                List(dataStore.movies.movies, id: \.self, selection: $selectedMovie) { movie in
+                    NavigationLink(value: Route.movie(movie)) {
+                        VStack {
+                            Text("\(movie.title)").bold()
+                            Text("\(movie.description)")
+                        }
+                    }
+                }
+                .navigationDestination(for: Route.self) { route in
+                    switch route {
+                    case let .movie(movie):
+                        MovieView(selectedMovie: movie)
+                    case let .actor(actor):
+                        ActorView(selectedActor: actor)
+                    case .director:
+                        DirectorView()
+                    }
                 }
             }
         }
+        NavigationStackView()
         .padding()
     }
 }

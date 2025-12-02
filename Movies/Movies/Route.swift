@@ -8,6 +8,7 @@
 import Foundation
 
 enum Route: Hashable {
-    case IntValue(Int)
-    case StringValue
+    case movie(Movie)
+    case actor(Actor)
+    case director(Director)
 }
