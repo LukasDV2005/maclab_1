@@ -14,18 +14,30 @@ struct MovieView: View {
     var body: some View {
         @Bindable var pathStore = pathStore
         VStack {
-            Text("\(selectedMovie!.title)").bold()
+            Text("\(selectedMovie!.title)").bold().font(Font.largeTitle)
             Text("\(selectedMovie!.description)")
+            Divider()
             VStack {
                 Text("Actors").bold()
                 List(selectedMovie!.actors, id: \.self) { actor in
                     NavigationLink(value: Route.actor(actor)) {
-                        Text("\(actor.firstName)" + " " + "\(actor.lastName)")
+                        VStack {
+                            Text("\(actor.firstName)" + " " + "\(actor.lastName)")
+                        }
                     }
-                }
+                }.padding(10)
+                
             }
-            Text("Director").bold()
-            
+            Divider()
+            VStack {
+                Text("Director").bold()
+                NavigationLink(value: Route.director(selectedMovie!.director)) {
+                    VStack {
+                        Text("\(selectedMovie!.director.firstName)" + " " + "\(selectedMovie!.director.lastName)")
+                    }
+                }.padding(10)
+                Divider()
+            }
         }
         .padding()
     }

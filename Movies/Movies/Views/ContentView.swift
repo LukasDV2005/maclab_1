@@ -29,8 +29,8 @@ struct ContentView: View {
                         MovieView(selectedMovie: movie)
                     case let .actor(actor):
                         ActorView(selectedActor: actor)
-                    case .director:
-                        DirectorView()
+                    case let .director(director):
+                        DirectorView(selectedDirector: director)
                     }
                 }
             }
@@ -38,8 +38,4 @@ struct ContentView: View {
         NavigationStackView()
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }

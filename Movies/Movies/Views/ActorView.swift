@@ -15,7 +15,9 @@ struct ActorView: View {
     var body: some View {
         VStack{
             Text("Actor: \(selectedActor!.firstName)" + " " + "\(selectedActor!.lastName)")
+            Divider()
             Text("birthday: " + "\(selectedActor!.birthday)")
+            Divider()
             Text("Movie(s)").bold()
             List(dataStore.getMovies(actor:  selectedActor!), id: \.self) { movie in
                 NavigationLink(value: Route.movie(movie)) {
@@ -24,10 +26,7 @@ struct ActorView: View {
                     }
                 }
             }
+            Divider()
         }
     }
-}
-
-#Preview {
-    ActorView()
 }
