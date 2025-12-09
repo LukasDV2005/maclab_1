@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 class GalleryData {
-    public var galleries = Galleries(galleries: <#[Gallery]#>)
+    public var galleries = Galleries(galleries: [Gallery]())
     
     init(){
         galleries = load("galleries.json")
@@ -21,6 +21,7 @@ class GalleryData {
     
     func getGalleries(artist: Artist) -> [Gallery] {
         let galleriesA = galleries.galleries.filter { $0.artists.contains(where: { $0.self == artist }) }
+        return galleriesA
     }
     
     private func sort() {
@@ -37,7 +38,7 @@ class GalleryData {
             print("✅ Data loaded successfully.")
         } catch {
             print("❌ Failed to load galleries:", error)
-            galleries = []
+            
         }
     }
 }
