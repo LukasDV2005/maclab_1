@@ -8,6 +8,6 @@
 import Foundation
 
 enum Route: Hashable {
-    case artist(id: String)
-    case artwork(id: String)
+    case artist(id: Artist)
+    case artwork(id: Artwork)
 }
