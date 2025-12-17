@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct InstellingenView: View {
+    @Environment(AppData.self) var appData
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        @Bindable var appData = appData
+        Picker("Sorteervoorkeur", selection: $appData.selectedSorteerVoorkeur) {
+            ForEach(appData.sorteerVoorkeur, id: \.self) { voorkeur in
+                Text(voorkeur)
+            }
+        }.pickerStyle(.radioGroup)
     }
-}
-
-#Preview {
-    InstellingenView()
 }

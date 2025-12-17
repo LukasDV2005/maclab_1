@@ -8,30 +8,31 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(AppData.self) var appData
     @Environment(DataManager.self) var dataManager
     @Environment(PathStore.self) var pathStore
-    @Environment(AppData.self) var appData
+    
     var body: some View {
-        @Bindable var appData = appData
         @Bindable var pathStore = pathStore
+        @Bindable var appData = appData
         VStack {
             NavigationStack(path: $pathStore.path) {
-                VStack {
-                    List(dataManager.getCars(), id: \.self) { car in
-                        Text(car.model)
+                List(dataManager.getCars(), id: \.self, selection: $appData.selectedCar) { car in
+                    NavigationLink(value: Route.car(car)) {
+                        VStack {
+                            Text(car.brand)
+                            Text(car.price.description)
+                            Text(car.model)
+                        }
                     }
                 }
             }
-        }
-        Picker("filter op " , selection: $appData.selectedBenzineType) {
-            ForEach(appData.benzineTypes, id: \.self) { benzine in
-                Text(benzine)
+            .navigationDestination(for: Route.self) {
+                route in switch route {
+                case let .car(selectedCar):
+                    CarDetailView(car: selectedCar)
+                }
             }
-        }.pickerStyle(.segmented)
-        
+        }
     }
-}
-
-#Preview {
-    HomeView()
 }

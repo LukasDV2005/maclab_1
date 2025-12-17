@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var favorites: [Car]?
     var body: some View {
         VStack {
             TabView {
