@@ -32,9 +32,9 @@ struct NoGalleryView: View {
                         }
                     }
                     .navigationDestination(for: Route.self) { route in switch route {
-                    case let .artist(artist): ArtistView(artist: artist)
+                    case let .artist(artist): ArtistView(artist: artist, gallery: gallery!)
                     case let .artwork(artwork):
-                        ArtworkView(selectedArtist: selectedArtist, artwork: artwork)
+                        ArtworkView(selectedArtist: selectedArtist, artwork: artwork, gallery: gallery!)
                     }
                     }
                 }

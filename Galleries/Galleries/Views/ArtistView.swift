@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ArtistView: View {
     var artist: Artist
+    var gallery: Gallery
     @Environment(PathStore.self) var pathStore
     var body: some View {
         @Bindable var pathStore = pathStore
