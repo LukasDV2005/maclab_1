@@ -18,7 +18,7 @@ struct HomeView: View {
         VStack {
             NavigationStack(path: $pathStore.path) {
                 List(dataManager.getCars(), id: \.self, selection: $appData.selectedCar) { car in
-                    NavigationLink(value: Route.car(car)) {
+                    NavigationLink(value: Route.car(id: car)) {
                         VStack {
                             Text(car.brand)
                             Text(car.price.description)

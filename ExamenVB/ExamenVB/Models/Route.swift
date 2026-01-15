@@ -8,5 +8,5 @@
 import Foundation
 
 enum Route: Hashable {
-    case car(Car)
+    case car(id: Car)
 }

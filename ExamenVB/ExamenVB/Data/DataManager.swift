@@ -27,6 +27,18 @@ class DataManager {
         
     }
     
+    func sortCars(sorteervoorkeur: String) -> [Car] {
+        let sorted: [Car]
+        if sorteervoorkeur == "Price" {
+            sorted = cars.cars.sorted(by: { $0.price < $1.price })
+        } else if sorteervoorkeur == "Make" {
+            sorted = cars.cars.sorted(by: { $0.model < $1.model })
+        } else {
+            sorted = cars.cars.sorted(by: { $0.year < $1.year })
+        }
+        return sorted
+    }
+    
 }
 
 func load<T: Decodable>(_ filename: String) -> T {
